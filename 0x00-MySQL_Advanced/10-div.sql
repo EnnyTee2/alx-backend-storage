@@ -13,7 +13,7 @@ BEGIN
 	IF b = 0 THEN
 		RETURN 0;
         END IF;
-        SET res = (a * 1.0) / b;
-        RETURN res;
-END$$
+        SET result = (a * 1.0) / b;
+        RETURN result;
+END;$$
 DELIMITER ;
