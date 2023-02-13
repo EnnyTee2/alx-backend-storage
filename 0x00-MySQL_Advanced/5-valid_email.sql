@@ -3,4 +3,8 @@
 
 CREATE TRIGGER reset_attr BEFORE UPDATE ON users
 FOR EACH ROW
-UPDATE users SET NEW.valid_email = 0 IF NEW.email != OLD.email;
+BEGIN
+	IF NEW.email != OLD.email THEN
+		SET NEW.valid_email = 0;
+	END IF;
+END;
