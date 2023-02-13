@@ -1,7 +1,7 @@
 -- Script to create table 'users' with some requirements
 -- id, name, email
 CREATE TABLE IF NOT EXISTS users (
-    id INT UNIQUE NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    email VARCHAR(255) UNIQUE NOT NULL
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    email VARCHAR(255) NOT NULL UNIQUE,
     name VARCHAR(255)
 );
