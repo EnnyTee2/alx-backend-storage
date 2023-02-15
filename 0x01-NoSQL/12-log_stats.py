@@ -14,25 +14,23 @@ global METHODS
 
 METHODS = ["GET", "POST", "PUT", "PATCH", "DELETE"]
 
-
-def log_stats(mongo_collection, option=None):
+def log_stats_method(mongo_collection, method):
+    value = mongo_collection.count_documents(
+        {"method": {"$regex": method}})
+    print(f"\tmethod {method}: {value}")
+    return
+    
+def log_stats(mongo_collection):
     """
     Prototype: def log_stats(mongo_collection, option=None):
     Provide some stats about Nginx logs stored in MongoDB
     """
-    
-    if option:
-        value = mongo_collection.count_documents(
-            {"method": {"$regex": option}})
-        print(f"\tmethod {option}: {value}")
-        return
-
     total = mongo_collection.count_documents({})
     print(f"{total} logs")
-    
     print("Methods:")
+    
     for method in METHODS:
-        log_stats(nginx_collection, method)
+        log_stats_method(nginx_collection, method)
     status_check = mongo_collection.count_documents({"path": "/status"})
     print(f"{status_check} status check")
 
