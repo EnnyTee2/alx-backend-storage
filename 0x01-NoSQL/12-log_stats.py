@@ -14,9 +14,15 @@ global METHODS
 
 METHODS = ["GET", "POST", "PUT", "PATCH", "DELETE"]
 
+
 def log_stats_method(mongo_collection, method):
+    """
+    Prototype: def log_stats_method(mongo_collection, method):
+    Provide some stats about some specific http methods in the log
+    """
     value = mongo_collection.count_documents(
-        {"method": {"$regex": method}})
+        {"method": {"$regex": method}}
+    )
     print(f"\tmethod {method}: {value}")
     return
     
