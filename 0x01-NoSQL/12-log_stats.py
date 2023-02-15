@@ -10,6 +10,8 @@ one line with method=GET, path=/status
 from pymongo import MongoClient
 
 
+global METHODS
+
 METHODS = ["GET", "POST", "PUT", "PATCH", "DELETE"]
 
 
@@ -18,14 +20,14 @@ def log_stats(mongo_collection, option=None):
     Prototype: def log_stats(mongo_collection, option=None):
     Provide some stats about Nginx logs stored in MongoDB
     """
-    items = {}
+    
     if option:
         value = mongo_collection.count_documents(
             {"method": {"$regex": option}})
         print(f"\tmethod {option}: {value}")
         return
 
-    total = mongo_collection.count_documents(items)
+    total = mongo_collection.count_documents({})
     print(f"{total} logs")
     
     print("Methods:")
