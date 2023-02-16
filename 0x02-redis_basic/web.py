@@ -17,7 +17,7 @@ def url_access_counter(funct):
         cached_data = db.get(db_cache_key)
         if cached_data:
             return cached_data.decode("utf-8")
-        
+
         counter_key = "count:" + url
         html_file = funct(url)
         db.incr(counter_key)
@@ -25,6 +25,7 @@ def url_access_counter(funct):
         db.expire(db_cache_key, 10)
         return html_file
     return wrapper
+
 
 @url_access_counter
 def get_page(url: str) -> str:
