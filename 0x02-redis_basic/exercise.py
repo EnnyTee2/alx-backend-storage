@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """ Exercise """
 
-from uuid import uuid4 as uuid
+from uuid import uuid4
 import redis
-from typing import Union, Callable
+from typing import Union, Callable, Optional
 from functools import wraps
 
 
