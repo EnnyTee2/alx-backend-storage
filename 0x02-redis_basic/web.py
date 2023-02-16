@@ -4,11 +4,12 @@
 import requests
 import redis
 from functools import wraps
+from typing import Callable
 
 db = redis.Redis()
 
 
-def url_access_counter(funct):
+def url_access_counter(funct: Callable) -> Callable:
     """ Decorator counting number of times
     a URL is accessed """
     @wraps(funct)
