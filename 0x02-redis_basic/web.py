@@ -23,7 +23,7 @@ def url_access_counter(funct: Callable) -> Callable:
             return cached_data.decode("utf-8")
 
         html_file = funct(url)
-        db.setex(db_cache_key, 10, html)
+        db.setex(db_cache_key, 10, html_file)
         return html_file
 
     return wrapper
