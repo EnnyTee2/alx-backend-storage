@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-""" Web """
+""" Web advanced task """
 
 import requests
 import redis
 from functools import wraps
 
+db = redis.Redis()
 
-db = redis.Redis(host='localhost', port=6379, db=0)
 
 def url_access_counter(funct):
     """ Decorator counting number of times
@@ -22,7 +22,7 @@ def url_access_counter(funct):
         html_file = funct(url)
         db.incr(counter_key)
         db.set(db_cache_key, html_file)
-        db.expire(cached_key, 10)
+        db.expire(db_cache_key, 10)
         return html_file
     return wrapper
 
