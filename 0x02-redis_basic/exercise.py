@@ -3,7 +3,7 @@
 
 from uuid import uuid4 as uuid
 import redis
-from typing import Union
+from typing import Union, Callable
 
 
 class Cache:
@@ -19,3 +19,15 @@ class Cache:
         data_id = str(uuid())
         self._redis.set(data_id, data)
         return data_id
+
+    def get(self, key: str, fn: Callable = None):
+        if not self._redis.get(key):
+            return None
+        
+    def get_str(self):
+        pass
+    
+    def get_int(self):
+        pass
+        
+        
